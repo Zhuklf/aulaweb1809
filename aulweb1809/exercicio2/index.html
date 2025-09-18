@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificador de Voto</title>
+</head>
+<body>
+    <h2>Verifique sua situação de voto</h2>
+    <label for="idade">Digite sua idade:</label>
+    <input type="number" id="idade" min="0">
+    <button onclick="verificarVoto()">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarVoto() {
+            const idade = parseInt(document.getElementById('idade').value);
+            let mensagem = '';
+
+            if (isNaN(idade) || idade < 0) {
+                mensagem = 'Por favor, digite uma idade válida.';
+            } else if (idade < 16) {
+                mensagem = 'Você não pode votar.';
+            } else if ((idade >= 16 && idade < 18) || idade > 65) {
+                mensagem = 'O voto é facultativo.';
+            } else if (idade >= 18 && idade <= 65) {
+                mensagem = 'O voto é obrigatório.';
+            }
+
+            document.getElementById('resultado').textContent = mensagem;
+        }
+    </script>
+</body>
+</html>
